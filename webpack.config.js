@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        basic1: ['./src/basic1/app.ts']
+        basic1: ['./src/basic1/app.ts'],
+        color1: ['./src/color1/app.ts'],
     },
     module: {
         rules: [{
