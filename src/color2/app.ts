@@ -1,7 +1,7 @@
 import * as P5 from "p5";
 
 const sketch = (p5: P5) => {
-    var values = [];
+    var values: { x: number, y: number, vertices: number, radius: number }[] = [];
 
     p5.setup = () => {
         p5.createCanvas(800, 800);
