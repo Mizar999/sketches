@@ -2,7 +2,13 @@
     "compilerOptions": {
         "target": "es5",
         "rootDir": "./src",
-        "types": ["p5/global"],
-        "noImplicitAny": true
+        "types": [
+            "p5/global"
+        ],
+        "noImplicitAny": true,
+        "lib": [
+            "dom",
+            "es2015"
+        ]
     }
 }
