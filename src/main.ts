@@ -5,30 +5,27 @@ import { shape1, shape2 } from "./shapes";
 class SketchManager {
     private mainP5: P5;
     private sketches: {[key: string]: (p5: P5) => void};
-    private keys: string[];
-    private index: number;
 
     constructor(id: string) {
         this.populateSketches();
-        this.index = 0;
-        this.keys = Object.keys(this.sketches);
 
-        let button = document.getElementById(id);
-        button.addEventListener("click", (e: Event) => {
-            this.changeSketch(this.keys[this.index]);
-            ++this.index;
-            if (this.index >= this.keys.length) {
-                this.index = 0;
-            }
-        });
+        let select = document.getElementById(id) as HTMLSelectElement;
+        let option;
+        for(let key of Object.keys(this.sketches)) {
+            option = document.createElement("option");
+            option.text = key;
+            select.add(option);
+        }
+
+        select.addEventListener("change", () => this.changeSketch(select.value));
     }
 
     private populateSketches() {
         this.sketches = {};
-        this.sketches["color1"] = color1;
-        this.sketches["color2"] = color2;
-        this.sketches["shape1"] = shape1;
-        this.sketches["shape2"] = shape2;
+        this.sketches["Color Grid"] = color1;
+        this.sketches["Color Shapes"] = color2;
+        this.sketches["Simple Shapes"] = shape1;
+        this.sketches["Shape Sketch"] = shape2;
     }
 
     private changeSketch(name: string) {
@@ -44,4 +41,4 @@ class SketchManager {
     }
 }
 
-new SketchManager("change-sketch");
+new SketchManager("sketch-select");
