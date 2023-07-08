@@ -1,6 +1,6 @@
 import * as P5 from "p5";
 
-export const color1 = (p5: P5) => {
+export const colorGrid = (p5: P5) => {
     var stepX, stepY;
 
     p5.setup = () => {
@@ -28,7 +28,7 @@ export const color1 = (p5: P5) => {
     }
 }
 
-export const color2 = (p5: P5) => {
+export const colorShapes = (p5: P5) => {
     var values: { x: number, y: number, vertices: number, radius: number }[] = [];
 
     p5.setup = () => {

@@ -1,6 +1,6 @@
 import * as P5 from "p5";
-import { color1, color2 } from "./colors";
-import { shape1, shape2 } from "./shapes";
+import { colorGrid, colorShapes } from "./colors";
+import { simpleShapes, shapeSketch } from "./shapes";
 
 class SketchManager {
     private mainP5: P5;
@@ -21,11 +21,12 @@ class SketchManager {
     }
 
     private populateSketches() {
-        this.sketches = {};
-        this.sketches["Color Grid"] = color1;
-        this.sketches["Color Shapes"] = color2;
-        this.sketches["Simple Shapes"] = shape1;
-        this.sketches["Shape Sketch"] = shape2;
+        this.sketches = {
+            "Color Grid": colorGrid,
+            "Color Shapes": colorShapes,
+            "Simple Shapes": simpleShapes,
+            "Shape Sketch": shapeSketch
+        };
     }
 
     private changeSketch(name: string) {
