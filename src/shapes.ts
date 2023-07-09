@@ -29,38 +29,40 @@ export const simpleShapes = (p5: P5) => {
 }
 
 export const shapeSketch = (p5: P5) => {
-    var value = 0;
-    var radius: number;
-    var resolutions: number[] = [];
-
     p5.setup = () => {
-        p5.createCanvas(800, 800);
+        let canvas = p5.createCanvas(800, 800);
+        canvas.mousePressed(() => {
+            if (p5.mouseButton = p5.LEFT) {
+                p5.redraw();
+            }
+        });
+
         p5.noFill();
-        p5.background(255);
         p5.strokeWeight(2);
         p5.stroke(0, 25);
+    }
 
-        radius = -p5.width / 2;
-        var counter = p5.int(p5.random(2, 8));
+    p5.draw = () => {
+        p5.background(255);
+        let resolutions: number[] = [];
+        let radius = -p5.width / 2;
+        let counter = p5.int(p5.random(2, 8));
         while (counter > 0) {
             resolutions.push(p5.int(p5.random(3, 10)));
             --counter;
         }
-
-        p5.noLoop();
-    }
-
-    p5.draw = () => {
+        
         p5.push();
         p5.translate(p5.width / 2, p5.height / 2);
 
-        var x, y;
+        let x, y;
+        let value = 0;
         while (radius <= (p5.width / 2)) {   
-            var resolution = p5.random(resolutions);
-            var angle = p5.TAU / resolution;
+            let resolution = p5.random(resolutions);
+            let angle = p5.TAU / resolution;
             
             p5.beginShape();
-            for (var counter = 0; counter <= resolution; ++counter) {
+            for (counter = 0; counter <= resolution; ++counter) {
                 x = p5.cos(angle * counter) * radius;
                 y = p5.sin(angle * counter) * radius;
                 p5.vertex(x, y);
@@ -72,5 +74,12 @@ export const shapeSketch = (p5: P5) => {
         }
 
         p5.pop();
+        p5.noLoop();
+    }
+
+    p5.keyPressed = (event?: object) => {
+        if (p5.key.toLowerCase() === 's') {
+            p5.save("shape_sketch.png");
+        }
     }
 }
